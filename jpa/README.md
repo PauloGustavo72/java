@@ -57,3 +57,24 @@ JPA
     1               | 3
     5               | 2
     5               | 3
+
+
+### Relacionamento um para um
+```java
+@Entity 
+public class Cliente {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String nome;
+  private String profissao;
+  private String endereco;
+
+  @JoinColumn(unique = true)
+  @OneToOne
+  private Conta conta;
+}
+```
+
+* A anotação *@JoinColumn(unique = true)* cria uma *constraint* que não permite valores iguais. Logo eu evito que uma conta possa ser de mais de um cliente.
